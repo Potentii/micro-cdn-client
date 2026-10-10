@@ -12,9 +12,6 @@ export default class MicroCdnClient {
 	#baseUrl;
 
 
-
-
-
 	/**
 	 * @param {MicroCdnClientOptions} opts Options for configuring this client.
 	 */
@@ -27,10 +24,7 @@ export default class MicroCdnClient {
 	}
 
 
-
-
 	// --------------------- PUBLIC API ---------------------
-
 
 
 	/**
@@ -100,7 +94,6 @@ export default class MicroCdnClient {
 
 		return await response.json();
 	}
-
 
 
 }

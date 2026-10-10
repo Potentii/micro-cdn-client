@@ -25,8 +25,10 @@ export interface MicroCdnUploadFileRes {
 
 export default class MicroCdnClient {
 	constructor(opts: MicroCdnClientOptions);
+
 	/** Gets the file metadata. */
 	getFileMetadata(accessToken: string, fileId: string): Promise<MicroCdnUploadFileRes>;
+
 	/** Uploads a file stream. */
 	uploadFile(accessToken: string, contentStream: (ReadableStream | ReadStream | Readable | File | Blob), contentType: string): Promise<MicroCdnUploadFileRes>;
 

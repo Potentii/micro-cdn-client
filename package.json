@@ -1,6 +1,6 @@
 {
 	"name": "@potentii/micro-cdn-client",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Client library for micro-cdn",
 	"main": "main.mjs",
 	"types": "main.d.ts",
@@ -24,6 +24,10 @@
 		"cdn",
 		"client"
 	],
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/Potentii/micro-cdn-client.git"
