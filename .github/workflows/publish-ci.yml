@@ -20,7 +20,6 @@ jobs:
             uses: actions/setup-node@v7
             with:
                node-version: '24'
-               registry-url: 'https://registry.npmjs.org'
 
          -  name: Update NPM
             run: npm install -g npm@latest # Required for OIDC
