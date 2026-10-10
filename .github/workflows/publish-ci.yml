@@ -34,11 +34,9 @@ jobs:
          -  name: Test project
             run: npm run test:ci --if-present
 
-         -  name: Publish package
-         -  run: npm publish --provenance --access public
-
          -  name: Check if package exists
             id: check_package
+            shell: bash
             run: |
                PACKAGE_NAME=$(node -p "require('./package.json').name")
                if npm view "$PACKAGE_NAME" version >/dev/null 2>&1; then
