@@ -1,6 +1,6 @@
 {
 	"name": "@potentii/micro-cdn-client",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Client library for micro-cdn",
 	"main": "main.mjs",
 	"types": "main.d.ts",
