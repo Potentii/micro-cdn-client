@@ -1,9 +1,8 @@
 import Joi from "joi";
 import * as uuid from "uuid";
+import {ResponseEnvelope} from "@potentii/rest-envelopes";
 
-/**
- * MicroCdnClient
- */
+
 export default class MicroCdnClient {
 
 	/**
@@ -12,9 +11,6 @@ export default class MicroCdnClient {
 	#baseUrl;
 
 
-	/**
-	 * @param {MicroCdnClientOptions} opts Options for configuring this client.
-	 */
 	constructor(opts) {
 		Joi.assert(opts, Joi.object({
 			url: Joi.string().uri().required(),
@@ -27,12 +23,7 @@ export default class MicroCdnClient {
 	// --------------------- PUBLIC API ---------------------
 
 
-	/**
-	 *
-	 * @param {string} accessToken User access token
-	 * @param {string} fileId The file ID
-	 * @return {Promise<MicroCdnUploadFileRes>}
-	 */
+
 	async getFileMetadata(accessToken, fileId) {
 
 		const response = await fetch(`${this.#baseUrl}/cdn/files/metadata/${fileId}`, {
@@ -43,21 +34,10 @@ export default class MicroCdnClient {
 			},
 		});
 
-		if (!response.ok) {
-			throw new Error(`MicroCdnClient: Unexpected error getting file metadata, status: "${response.status}"`);
-		}
-
-		return (await response.json())?.data;
+		return ResponseEnvelope.from(await response.json());
 	}
 
 
-	/**
-	 *
-	 * @param {string} accessToken User access token
-	 * @param {ReadableStream | import('node:fs').ReadStream | import('node:stream').Readable | File | Blob} contentStream The readable stream of the file
-	 * @param {string} contentType The file mimetype
-	 * @return {Promise<MicroCdnUploadFileRes>}
-	 */
 	async uploadFile(accessToken, contentStream, contentType) {
 		let readableStream;
 
@@ -88,11 +68,7 @@ export default class MicroCdnClient {
 			duplex: 'half',
 		});
 
-		if (!response.ok) {
-			throw new Error(`MicroCdnClient: Unexpected error uploading file, status: "${response.status}"`);
-		}
-
-		return (await response.json())?.data;
+		return ResponseEnvelope.from(await response.json());
 	}
 
 

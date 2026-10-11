@@ -1,6 +1,6 @@
 {
 	"name": "@potentii/micro-cdn-client",
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"description": "Client library for micro-cdn",
 	"main": "main.mjs",
 	"types": "main.d.ts",
@@ -38,6 +38,7 @@
 	"author": "Guilherme Reginaldo Ruella<potentii@gmail.com>",
 	"license": "MIT",
 	"dependencies": {
+		"@potentii/rest-envelopes": "1.4.1",
 		"joi": "18.2.9",
 		"uuid": "14.0.2"
 	}
