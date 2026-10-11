@@ -47,7 +47,7 @@ export default class MicroCdnClient {
 			throw new Error(`MicroCdnClient: Unexpected error getting file metadata, status: "${response.status}"`);
 		}
 
-		return await response.json();
+		return (await response.json())?.data;
 	}
 
 
@@ -92,7 +92,7 @@ export default class MicroCdnClient {
 			throw new Error(`MicroCdnClient: Unexpected error uploading file, status: "${response.status}"`);
 		}
 
-		return await response.json();
+		return (await response.json())?.data;
 	}
 
 
