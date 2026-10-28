@@ -24,9 +24,19 @@ export default class MicroCdnClient {
 
 
 
-	async getFileMetadata(accessToken, fileId) {
+	async getFileMetadata(accessToken, fileId, fields) {
 
-		const response = await fetch(`${this.#baseUrl}/cdn/files/metadata/${fileId}`, {
+		let query = new URLSearchParams();
+		if(fields?.length){
+			for(const field of fields){
+				if(!field?.trim?.()?.length) continue;
+				query.append('fields', field.trim());
+			}
+		}
+
+		const queryString = query.size ? `?${query.toString()}` : '';
+
+		const response = await fetch(`${this.#baseUrl}/cdn/files/metadata/${fileId}${queryString}`, {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${accessToken}`,
