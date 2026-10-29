@@ -48,7 +48,7 @@ export default class MicroCdnClient {
 	}
 
 
-	async uploadFile(accessToken, contentStream, contentType) {
+	async uploadFile(accessToken, contentStream, contentType, bucket) {
 		let readableStream;
 
 		// *Normalizing the input into a Web ReadableStream:
@@ -72,6 +72,7 @@ export default class MicroCdnClient {
 				'Authorization': `Bearer ${accessToken}`,
 				'X-Corr-Id': uuid.v4(),
 				'Content-Type': contentType || 'application/octet-stream',
+				'X-File-Bucket': bucket || undefined,
 			},
 			body: readableStream,
 			// duplex: 'half' is required by the spec when sending a stream body via fetch

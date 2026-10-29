@@ -58,7 +58,8 @@ export default class MicroCdnClient {
 	 * @param accessToken User access token
 	 * @param contentStream The readable stream of the file
 	 * @param contentType The file mimetype
+	 * @param [bucket] The optional bucket to upload the file to
 	 */
-	uploadFile(accessToken: string, contentStream: (ReadableStream | ReadStream | Readable | File | Blob), contentType: string|null|undefined): Promise<ResponseEnvelope<MicroCdnUploadFileRes>>;
+	uploadFile(accessToken: string, contentStream: (ReadableStream | ReadStream | Readable | File | Blob), contentType: string|null|undefined, bucket: string|null|undefined): Promise<ResponseEnvelope<MicroCdnUploadFileRes>>;
 
 }
