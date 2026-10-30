@@ -11,8 +11,8 @@ export interface MicroCdnClientOptions {
 }
 
 export interface CommonFileAttributes {
-	/** The upload ID. */
-	id: string;
+	/** The File ID. */
+	fileId: string;
 	/** The internal path of the main file for this upload. */
 	internalFilePath: string;
 	/** The main file type. */
@@ -46,7 +46,7 @@ export default class MicroCdnClient {
 	/**
 	 * Gets the file metadata.
 	 * @param accessToken User access token
-	 * @param fileId The file ID
+	 * @param fileId The File ID
 	 * @param fields The metadata fields to return
 	 */
 	getFileMetadata(accessToken: string, fileId: string, fields: EFileMetadataFields[] | null | undefined): Promise<ResponseEnvelope<MicroCdnGetMetadataRes>>;
@@ -54,12 +54,29 @@ export default class MicroCdnClient {
 
 	/**
 	 * Uploads a file stream.
-	 * It returns all the file metadata information.
 	 * @param accessToken User access token
 	 * @param contentStream The readable stream of the file
-	 * @param contentType The file mimetype
-	 * @param [bucket] The optional bucket to upload the file to
+	 * @param fileId The File ID of this file
 	 */
-	uploadFile(accessToken: string, contentStream: (ReadableStream | ReadStream | Readable | File | Blob), contentType: string|null|undefined, bucket: string|null|undefined): Promise<ResponseEnvelope<MicroCdnUploadFileRes>>;
+	uploadFile(accessToken: string, contentStream: (ReadableStream | ReadStream | Readable | File | Blob), fileId: string): Promise<ResponseEnvelope<MicroCdnUploadFileRes>>;
+
+
+	/**
+	 * Moves a file to a new location.
+	 * @param accessToken User access token
+	 * @param fileId The current File ID
+	 * @param newFileId The new File ID
+	 */
+	moveFile(accessToken: string, fileId: string, newFileId: string): Promise<void>;
+
+
+
+	/**
+	 * Removes a file.
+	 * @param accessToken User access token
+	 * @param fileId The File ID to be removed
+	 */
+	removeFile(accessToken: string, fileId: string): Promise<void>;
+
 
 }
