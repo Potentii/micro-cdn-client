@@ -1,6 +1,6 @@
 {
 	"name": "@potentii/micro-cdn-client",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "Client library for micro-cdn",
 	"main": "main.mjs",
 	"types": "main.d.ts",
@@ -39,8 +39,8 @@
 	"license": "MIT",
 	"dependencies": {
 		"@potentii/rest-envelopes": "1.4.1",
-		"joi": "18.2.9",
-		"uuid": "14.0.2"
+		"joi": "18.3.2",
+		"uuid": "14.0.3"
 	}
 }
 

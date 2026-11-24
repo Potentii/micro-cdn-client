@@ -107,6 +107,26 @@ export default class MicroCdnClient {
 	}
 
 
+	async copyFile(accessToken, fileId, newFileId) {
+		if(typeof fileId !== 'string' || !fileId?.trim?.()?.length)
+			throw new TypeError(`MicroCdnClient.copyFile: Invalid 'fileId'`);
+
+		if(typeof newFileId !== 'string' || !newFileId?.trim?.()?.length)
+			throw new TypeError(`MicroCdnClient.copyFile: Invalid 'newFileId'`);
+
+		const response = await fetch(`${this.#baseUrl}/cdn/files/${newFileId}`, {
+			method: 'POST',
+			headers: {
+				'Authorization': `Bearer ${accessToken}`,
+				'X-Corr-Id': uuid.v4(),
+				'X-Copy-From': fileId,
+			}
+		});
+
+		return ResponseEnvelope.from(await response.json());
+	}
+
+
 	async removeFile(accessToken, fileId) {
 		if(typeof fileId !== 'string' || !fileId?.trim?.()?.length)
 			throw new TypeError(`MicroCdnClient.removeFile: Invalid 'fileId'`);

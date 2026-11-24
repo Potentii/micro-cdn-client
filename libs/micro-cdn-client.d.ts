@@ -69,6 +69,14 @@ export default class MicroCdnClient {
 	 */
 	moveFile(accessToken: string, fileId: string, newFileId: string): Promise<void>;
 
+	/**
+	 * Copies a file to a new location.
+	 * @param accessToken User access token
+	 * @param fileId The File ID to be copied
+	 * @param newFileId The destination File ID
+	 */
+	copyFile(accessToken: string, fileId: string, newFileId: string): Promise<ResponseEnvelope<MicroCdnUploadFileRes>>;
+
 
 
 	/**
