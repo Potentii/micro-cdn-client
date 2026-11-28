@@ -1,6 +1,14 @@
+import { Agent } from 'undici';
 import Joi from "joi";
 import * as uuid from "uuid";
 import {ResponseEnvelope} from "@potentii/rest-envelopes";
+
+
+const localAgent = new Agent({
+	headersTimeout: 0,
+	bodyTimeout: 0,
+});
+
 
 
 export default class MicroCdnClient {
@@ -77,6 +85,7 @@ export default class MicroCdnClient {
 				'Authorization': `Bearer ${accessToken}`,
 				'X-Corr-Id': uuid.v4(),
 			},
+			dispatcher: localAgent,
 			body: readableStream,
 			// duplex: 'half' is required by the spec when sending a stream body via fetch
 			duplex: 'half',
@@ -101,6 +110,7 @@ export default class MicroCdnClient {
 				'X-Corr-Id': uuid.v4(),
 				'X-New-File-Id': newFileId,
 			},
+			dispatcher: localAgent,
 		});
 
 		return ResponseEnvelope.from(await response.json());
@@ -120,7 +130,8 @@ export default class MicroCdnClient {
 				'Authorization': `Bearer ${accessToken}`,
 				'X-Corr-Id': uuid.v4(),
 				'X-Copy-From': fileId,
-			}
+			},
+			dispatcher: localAgent,
 		});
 
 		return ResponseEnvelope.from(await response.json());
