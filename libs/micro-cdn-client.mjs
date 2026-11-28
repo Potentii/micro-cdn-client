@@ -1,4 +1,4 @@
-import { Agent } from 'undici';
+import { fetch, Agent } from 'undici';
 import Joi from "joi";
 import * as uuid from "uuid";
 import {ResponseEnvelope} from "@potentii/rest-envelopes";
@@ -52,6 +52,7 @@ export default class MicroCdnClient {
 				'Authorization': `Bearer ${accessToken}`,
 				'X-Corr-Id': uuid.v4(),
 			},
+			dispatcher: localAgent,
 		});
 
 		return ResponseEnvelope.from(await response.json());
